@@ -122,8 +122,8 @@ query (void)
   g_free (help_uri);
 
   gimp_install_procedure (PROCEDURE_NAME,
-			  "Deskew",
-			  "Auto-straighten (deskew) the image",
+			  N_("Deskew"),
+			  N_("Auto-straighten (deskew) the image"),
 			  "Karl Chen <quarl@cs.berkeley.edu>",
 			  "Karl Chen <quarl@cs.berkeley.edu>",
 			  "2008",
