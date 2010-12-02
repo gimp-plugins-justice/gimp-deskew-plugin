@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Александр Прокудин <alexandre.prokoudine@gmail.com>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gimp deskew plugin 1.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-03 00:56+0300\n"
+"PO-Revision-Date: 2010-12-03 00:56+0300\n"
+"Last-Translator: Александр Прокудин <alexandre.prokoudine@gmail.com>\n"
+"Language-Team: Russian <gnome-cyr@lists.gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); 10<=4 && (n%100<10 || n%"
+"100>=20) ? 1 : 2);\n"
+
+#: ../src/interface.c:109 ../src/main.c:125 ../src/main.c:130
+msgid "Deskew"
+msgstr "Выровнять перекос скана"
+
+#. gimp_scale_entry_new() examples
+#: ../src/interface.c:124
+msgid "ScaleEntry Examples"
+msgstr ""
+
+#: ../src/interface.c:137
+msgid "Dummy 1:"
+msgstr ""
+
+#: ../src/interface.c:140
+msgid "Dummy scale entry 1"
+msgstr ""
+
+#: ../src/interface.c:146
+msgid "Dummy 2:"
+msgstr ""
+
+#: ../src/interface.c:149
+msgid "Dummy scale entry 2"
+msgstr ""
+
+#: ../src/interface.c:155
+msgid "Dummy 3:"
+msgstr ""
+
+#: ../src/interface.c:158
+msgid "Dummy scale entry 3"
+msgstr ""
+
+#. gimp_random_seed_new() example
+#: ../src/interface.c:165
+msgid "A Random Seed Entry"
+msgstr ""
+
+#. gimp_coordinates_new() example
+#: ../src/interface.c:180
+msgid ""
+"A GimpCoordinates Widget\n"
+"Initialized with the Drawable's Size"
+msgstr ""
+
+#: ../src/interface.c:198
+msgid "Width:"
+msgstr "Ширина:"
+
+#: ../src/interface.c:202
+msgid "Height:"
+msgstr "Высота:"
+
+#. Image and drawable menus
+#: ../src/interface.c:210
+msgid "Image and Drawable Menu Examples"
+msgstr ""
+
+#: ../src/interface.c:229
+msgid "Layers:"
+msgstr "Слои:"
+
+#: ../src/interface.c:237
+msgid "RGB Images:"
+msgstr "Изображения RGB:"
+
+#: ../src/main.c:126
+msgid "Auto-straighten (deskew) the image"
+msgstr "Автоматически выровнять перекос в отсканированном изображении"
