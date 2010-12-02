@@ -122,7 +122,7 @@ query (void)
   g_free (help_uri);
 
   gimp_install_procedure (PROCEDURE_NAME,
-			  "Blurb",
+			  "Deskew",
 			  "Auto-straighten (deskew) the image",
 			  "Karl Chen <quarl@cs.berkeley.edu>",
 			  "Karl Chen <quarl@cs.berkeley.edu>",
@@ -133,7 +133,7 @@ query (void)
 			  G_N_ELEMENTS (args), 0,
 			  args, NULL);
 
-  gimp_plugin_menu_register (PROCEDURE_NAME, "<Image>/Filters/Misc");
+  gimp_plugin_menu_register (PROCEDURE_NAME, "<Image>/Layer/Transform");
 }
 
 static void

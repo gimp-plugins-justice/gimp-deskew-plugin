@@ -106,9 +106,9 @@ dialog (gint32              image_ID,
 
   gimp_ui_init (PLUGIN_NAME, TRUE);
 
-  dlg = gimp_dialog_new (_("GIMP Plug-In Template"), PLUGIN_NAME,
+  dlg = gimp_dialog_new (_("Deskew"), PLUGIN_NAME,
                          NULL, 0,
-			 gimp_standard_help_func, "plug-in-template",
+			 gimp_standard_help_func, "gimp-deskew-plug-in",
 
 			 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 			 GTK_STOCK_OK,     GTK_RESPONSE_OK,
