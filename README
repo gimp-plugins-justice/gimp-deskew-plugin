@@ -3,3 +3,36 @@ The plugin's homepage has been offline for a very long time, and the
 plug-in needed some fixes. So I went ahead and saved it from 
 http://ccux-linux.de/pdb/index.php?pdetail=6271 where an src.rpm still had the 
 original tarball.
+
+Below goes slightly adjusted original contents of README.
+
+GIMP Deskew Plug-In
+===================
+
+Copyright (C) 2007 Karl Chen <quarl@cs.berkeley.edu>
+
+http://www.cubewano.org/gimp-deskew-plugin/
+
+Distributed under GPL v2+ (see COPYING).
+
+Uses Radon skew detection algorithm and code from the PageTools project
+(http://sourceforge.net/projects/pagetools).  kale4@users.sourceforge.net,
+yet@users.sourceforge.net.
+
+
+Usage
+=====
+
+Click Layer => Transform => Deskew.
+
+Gimp will auto-straighten ("deskew") the image.
+
+
+Installation
+============
+
+To build and install it, just ...
+
+	./configure
+	make
+	make install
