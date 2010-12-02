@@ -1,0 +1,13 @@
+Source: gimp-deskew-plugin
+Section: graphics
+Priority: optional
+Maintainer: Karl Chen <quarl@cs.berkeley.edu>
+Standards-Version: 3.0.1
+
+Package: gimp-deskew-plugin
+Architecture: any
+Depends: gimp (>= 2.0), ${shlibs:Depends}
+Description: A GIMP plugin for auto-straightening ("deskewing") an image.
+ .
+ Homepage: http://www.cubewano.org/gimp-deskew-plugin/
+

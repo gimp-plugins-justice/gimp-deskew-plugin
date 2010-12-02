@@ -1,0 +1,13 @@
+gimp-deskew-plugin (1.1) unstable; urgency=low
+
+  * Use tiling to significantly optimize transfer of data from GIMP to plugin.
+
+ -- Karl Chen <quarl@cs.berkeley.edu>  Sat, 08 Mar 2008 03:20:54 -0800
+
+gimp-deskew-plugin (1.0) unstable; urgency=low
+
+  * Initial release.
+
+ -- Karl Chen <quarl@cs.berkeley.edu>  Sat,  3 Mar 2007 04:19:27 -0800
+
+

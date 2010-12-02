@@ -1,0 +1,5 @@
+2007-03-03  Karl Chen  <quarl@quarl.org>
+
+    * v1.0 release - working deskew!
+    * Code base started using gimp-plugin-template
+    * Radon algorithm based on pagetools
