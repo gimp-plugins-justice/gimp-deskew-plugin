@@ -24,8 +24,17 @@ cd $srcdir
 
 check_version ()
 {
-    if expr $1 \>= $2 > /dev/null; then
-	echo "yes (version $1)"
+   # Get the major and minor version numbers
+   local ACTUAL_VERSION_MAJOR_MINOR=$(expr "$1" : '\([[:digit:]][[:digit:]]*\.[[:digit:]]*[[:digit:]]*\)')
+   local ACTUAL_VERSION_MAJOR=$(expr "$ACTUAL_VERSION_MAJOR_MINOR" : '\([[:digit:]][[:digit:]]*\)')
+   local ACTUAL_VERSION_MINOR=$(expr "$ACTUAL_VERSION_MAJOR_MINOR" : '.*\.\([[:digit:]]*[[:digit:]]*\)')
+   local MIN_VERSION_MAJOR_MINOR=$(expr "$2" : '\([[:digit:]][[:digit:]]*\.[[:digit:]]*[[:digit:]]*\)')
+   local MIN_VERSION_MAJOR=$(expr "$MIN_VERSION_MAJOR_MINOR" : '\([[:digit:]][[:digit:]]*\)')
+   local MIN_VERSION_MINOR=$(expr "$MIN_VERSION_MAJOR_MINOR" : '.*\.\([[:digit:]]*[[:digit:]]*\)')
+   if expr $ACTUAL_VERSION_MAJOR \> $MIN_VERSION_MAJOR > /dev/null; then
+    echo "yes (version $1)"
+   elif expr $ACTUAL_VERSION_MAJOR = $MIN_VERSION_MAJOR && expr $ACTUAL_VERSION_MINOR \>= $MIN_VERSION_MINOR > /dev/null; then
+    echo "yes (version $1)"
     else
 	echo "Too old (found version $1)!"
 	DIE=1
@@ -62,6 +71,9 @@ elif (automake-1.8 --version) < /dev/null > /dev/null 2>&1; then
 elif (automake-1.9 --version) < /dev/null > /dev/null 2>&1; then
    AUTOMAKE=automake-1.9
    ACLOCAL=aclocal-1.9
+elif (automake-1.11 --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake-1.11
+   ACLOCAL=aclocal-1.11
 elif (automake-1.6 --version) < /dev/null > /dev/null 2>&1; then
    AUTOMAKE=automake-1.6
    ACLOCAL=aclocal-1.6
