@@ -1,1 +1,8 @@
-Here you can collect the new features of your current plugin release.
+v1.1, 2011-??-??, Alexandre Prokoudine
+
+- cleanup of the code, much less old template code
+- autogen.sh patched by Steve Lessard to support automake 1.11
+
+v1.0, 2007-03-03, Karl Chen
+
+All assumed functionality presumably done.
