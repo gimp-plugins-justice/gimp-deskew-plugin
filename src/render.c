@@ -56,9 +56,7 @@ render (gint32              image_ID,
 
     drawable->drawable_id =
         gimp_item_transform_rotate(drawable->drawable_id,
-                                               angle,
-                                               TRUE,    // auto_center
-                                               -1, -1  // center_x, center_y
-            );
+                                   angle,
+                                   TRUE, -1, -1);
     gimp_context_pop ();
 }
