@@ -50,13 +50,15 @@ render (gint32              image_ID,
         // nothing to do; already straightened.
         return;
     }
+    gimp_context_push ();
+    gimp_context_set_interpolation (GIMP_INTERPOLATION_CUBIC);
+    gimp_context_set_transform_resize (GIMP_TRANSFORM_RESIZE_ADJUST);
 
     drawable->drawable_id =
-        gimp_drawable_transform_rotate_default(drawable->drawable_id,
+        gimp_item_transform_rotate(drawable->drawable_id,
                                                angle,
                                                TRUE,    // auto_center
-                                               -1, -1,  // center_x, center_y
-                                               TRUE,    // interpolate
-                                               FALSE    // clip_result
+                                               -1, -1  // center_x, center_y
             );
+    gimp_context_pop ();
 }
