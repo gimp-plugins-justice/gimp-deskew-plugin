@@ -62,7 +62,10 @@ else
 fi
 
 echo -n "checking for automake >= $AUTOMAKE_REQUIRED_VERSION ... "
-if (automake-1.7 --version) < /dev/null > /dev/null 2>&1; then
+if (automake-1.6 --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake-1.6
+   ACLOCAL=aclocal-1.6
+elif (automake-1.7 --version) < /dev/null > /dev/null 2>&1; then
    AUTOMAKE=automake-1.7
    ACLOCAL=aclocal-1.7
 elif (automake-1.8 --version) < /dev/null > /dev/null 2>&1; then
@@ -74,9 +77,15 @@ elif (automake-1.9 --version) < /dev/null > /dev/null 2>&1; then
 elif (automake-1.11 --version) < /dev/null > /dev/null 2>&1; then
    AUTOMAKE=automake-1.11
    ACLOCAL=aclocal-1.11
-elif (automake-1.6 --version) < /dev/null > /dev/null 2>&1; then
-   AUTOMAKE=automake-1.6
-   ACLOCAL=aclocal-1.6
+elif (automake-1.12 --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake-1.12
+   ACLOCAL=aclocal-1.12
+elif (automake-1.13 --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake-1.13
+   ACLOCAL=aclocal-1.13
+elif (automake-1.14 --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake-1.14
+   ACLOCAL=aclocal-1.14
 else
     echo
     echo "  You must have automake 1.6 or newer installed to compile $PROJECT."
