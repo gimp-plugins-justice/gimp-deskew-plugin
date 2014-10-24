@@ -2,7 +2,7 @@
 
 bin_PROGRAMS = deskew
 
-bindir = $(prefix)$(GIMP_LIBDIR)/plug-ins
+bindir = `pkg-config --variable=gimplibdir gimp-2.0`/plug-ins
 
 deskew_SOURCES =                                \
 	plugin-intl.h                           \
