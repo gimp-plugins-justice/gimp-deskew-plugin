@@ -1,7 +1,22 @@
-v1.1, 2011-??-??, Alexandre Prokoudine
+v1.1, 2014-10-27, Alexandre Prokoudine
 
-- cleanup of the code, much less old template code
-- autogen.sh patched by Steve Lessard to support automake 1.11
+Changes:
+
+- Deskew has been relocated to 'Layer -> Transform' menu 
+- Newer plugin template code 
+- Support for more recent versions of automake 
+- A few i18n fixes
+- The code fixed to use GIMP 2.8 API
+- The build system fixed to properly install the plugin's
+  executable file
+
+Note that in this version cubic interpolation is harcoded. 
+In the future, it might be a good idea to turn this into a 
+GEGL op that would ask the user to choose a particular 
+sampler. Patches are welcome.
+
+Contributors: Steve Lessard, Michael Natterer, 
+Alexandre Prokoudine.
 
 v1.0, 2007-03-03, Karl Chen
 
