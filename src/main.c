@@ -122,8 +122,8 @@ query (void)
   g_free (help_uri);
 
   gimp_install_procedure (PROCEDURE_NAME,
-			  N_("Deskew"),
-			  N_("Auto-straighten (deskew) the image"),
+			  N_("Automatically straighten the rotated image"),
+			  N_("This plug-in automatically straightens (deskews) rotated images"),
 			  "Karl Chen <quarl@cs.berkeley.edu>",
 			  "Karl Chen <quarl@cs.berkeley.edu>",
 			  "2008",
