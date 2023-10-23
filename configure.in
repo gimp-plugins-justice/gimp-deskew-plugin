@@ -71,7 +71,7 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
 
 dnl Add the languages which your application supports here.
 dnl ALL_LINGUAS="az de fr sk sv zh_TW"
-ALL_LINGUAS=""
+ALL_LINGUAS="es ru"
 
 AC_PROG_INTLTOOL
 AM_GLIB_GNU_GETTEXT
@@ -121,6 +121,7 @@ src/Makefile
 po/Makefile.in
 help/Makefile
 help/en/Makefile
+help/es/Makefile
 help/images/Makefile
 ])
 
