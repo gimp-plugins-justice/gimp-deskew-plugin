@@ -92,6 +92,9 @@ elif (automake-1.15 --version) < /dev/null > /dev/null 2>&1; then
 elif (automake-1.16 --version) < /dev/null > /dev/null 2>&1; then
    AUTOMAKE=automake-1.16
    ACLOCAL=aclocal-1.16
+elif (automake-1.17 --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake-1.17
+   ACLOCAL=aclocal-1.17
 else
     echo
     echo "  You must have automake 1.6 or newer installed to compile $PROJECT."
