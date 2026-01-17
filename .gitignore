@@ -1,0 +1,41 @@
+# Build artifacts
+*.o
+*.gmo
+*.Po
+*.Tpo
+*.dirstamp
+.deps/
+src/deskew
+
+# Autotools / Configuration
+Makefile
+Makefile.in
+**/Makefile
+**/Makefile.in
+!/po/Makefile.in.in
+compile
+config.h
+config.h.in
+config.log
+config.status
+configure
+depcomp
+install-sh
+missing
+stamp-h1
+po/stamp-it
+po/*.pot
+po/POTFILES
+intltool-extract.in
+intltool-merge.in
+intltool-update.in
+aclocal.m4
+autom4te.cache/
+
+# Backups and temporary files
+*~
+*.bak
+*.tgz
+*.deb
+description-pak
+doc-pak/
