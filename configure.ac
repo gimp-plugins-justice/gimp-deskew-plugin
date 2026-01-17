@@ -7,7 +7,7 @@ m4_define([plugin_name], [gimp-deskew-plugin])
 
 dnl These three define the plug-in version number
 m4_define([plugin_major_version], [1])
-m4_define([plugin_minor_version], [1])
+m4_define([plugin_minor_version], [2])
 m4_define([plugin_micro_version], [0])
 
 m4_define([plugin_version],
@@ -25,7 +25,7 @@ dnl AC_DEFINE(PLUGIN_MICRO_VERSION, plugin_micro_version, [0])
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS(config.h)
 
-AM_INIT_AUTOMAKE([no-define subdir-objects])
+AM_INIT_AUTOMAKE([no-define subdir-objects foreign])
 
 AC_PROG_CC
 AC_PROG_CXX

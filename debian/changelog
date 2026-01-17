@@ -1,3 +1,10 @@
+gimp-deskew-plugin (1.2) unstable; urgency=low
+
+  * Ported plugin to GIMP 3.0.
+  * Updated build system and cleaned up version control.
+
+ -- Alexander Dorokhine <dev@dorokhine.com>  Sat, 17 Jan 2026 00:00:00 +0000
+
 gimp-deskew-plugin (1.1) unstable; urgency=low
 
   * Use tiling to significantly optimize transfer of data from GIMP to plugin.
