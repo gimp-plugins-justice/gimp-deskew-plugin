@@ -16,10 +16,9 @@
 // with this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-// quarl 2007-03-03 initial version
-
 #include <formats/gimpfact.h>
 #include "deskew.h"
+#include <gegl.h>
 
 GimpFactory::GimpFactory(GimpDrawable *drawable)
     :drawable_(drawable)
@@ -30,26 +29,35 @@ GimpFactory::GimpFactory(GimpDrawable *drawable)
 
 CntPtr<BWImage>
 GimpFactory::create() {
-
-    // quarl 2007-03-03
+    DEBUGPRINT("GimpFactory::create: entering\n");
     //     TODO: this could be a parameter, but for now I don't think we need it.
     gint black_threshold = 100;
-
     gint x1, y1, x2, y2;
 
-    gimp_drawable_mask_bounds (drawable_->drawable_id,
-                               &x1, &y1,
-                               &x2, &y2);
-
-    gint bpp = gimp_drawable_bpp (drawable_->drawable_id);
-
-    gboolean has_alpha = gimp_drawable_has_alpha(drawable_->drawable_id);
+    if (!gimp_drawable_mask_bounds (drawable_, &x1, &y1, &x2, &y2)) {
+        DEBUGPRINT("GimpFactory::create: gimp_drawable_mask_bounds failed, using full drawable\n");
+        x1 = 0;
+        y1 = 0;
+        x2 = gimp_drawable_get_width(drawable_);
+        y2 = gimp_drawable_get_height(drawable_);
+    }
 
     gint w = x2 - x1;
     gint h = y2 - y1;
 
+    gboolean has_alpha = gimp_drawable_has_alpha(drawable_);
+    
+    GeglBuffer *buffer = gimp_drawable_get_buffer (drawable_);
+    const Babl *format = gegl_buffer_get_format (buffer);
+    gint bpp = babl_format_get_bytes_per_pixel (format);
+
     DEBUGPRINT("GimpFactory::create(): bounds: x1=%d, x2=%d, y1=%d, y2=%d, w=%d, h=%d, bpp=%d\n",
                x1, x2, y1, y2, w, h, bpp);
+
+    if (w <= 0 || h <= 0) {
+        DEBUGPRINT("GimpFactory::create(): invalid dimensions\n");
+        return CntPtr<BWImage>(NULL);
+    }
 
     gint max_bpp_check = bpp;
     if (has_alpha) {
@@ -59,54 +67,40 @@ GimpFactory::create() {
     }
 
     CntPtr<BWImage> image = CntPtr<BWImage>(new BWImage(w, h));
-
-    GimpPixelRgn rgn;
-    gimp_pixel_rgn_init (&rgn,
-                         drawable_,
-                         x1, y1,
-                         w, h,
-                         FALSE, FALSE);
-
-    unsigned int bytewidth = image->bytewidth();
-    unsigned char padmask=0xFF<<((w+7)%8);
-
-#if DEBUG
-    fprintf(stderr, "## writing to /tmp/t.pbm\n");
-    FILE *D = fopen("/tmp/t.pbm", "w");
-    fprintf(D, "P4\n%d %d\n", w, h);
-#endif
-
-    double total_pixels = double(w) * double(h);
-    double prev_show_progress = -99;
-    double pixels_seen = 0;
-
     image->zeroAll();
 
-    for (gpointer pr = gimp_pixel_rgns_register (1, &rgn);
-         pr != NULL;
-         pr = gimp_pixel_rgns_process (pr))
-    {
-        pixels_seen += double(rgn.w) * double(rgn.h);
-        // fprintf(stderr, "## pixels_seen = %ld\n", (long)pixels_seen);
+    DEBUGPRINT("GimpFactory::create(): image allocated\n");
 
-        for (int y = 0; y < rgn.h; ++y) {
-            for (int x = 0; x < rgn.w; ++x) {
-                for (int k = 0; k < max_bpp_check; ++k) {
-                    if (rgn.data[y * rgn.rowstride + x * bpp + k] < black_threshold) {
-                        image->setPixelOn( rgn.y + y - y1, rgn.x + x - x1 );
+    GeglRectangle roi = { x1, y1, w, h };
+    GeglBufferIterator *iter = gegl_buffer_iterator_new (buffer, &roi, 0, format,
+                                                         GEGL_ACCESS_READ, GEGL_ABYSS_NONE, 1);
+
+    DEBUGPRINT("GimpFactory::create(): iterator created\n");
+
+    while (gegl_buffer_iterator_next (iter)) {
+        guchar *data = (guchar *)iter->items[0].data;
+        GeglRectangle *rect = &iter->items[0].roi;
+
+        for (int y = 0; y < rect->height; y++) {
+            for (int x = 0; x < rect->width; x++) {
+                guchar *pixel = data + (y * rect->width + x) * bpp;
+                for (int k = 0; k < max_bpp_check; k++) {
+                    if (pixel[k] < black_threshold) {
+                        int py = rect->y + y - y1;
+                        int px = rect->x + x - x1;
+                        if (py >= 0 && py < h && px >= 0 && px < w) {
+                            image->setPixelOn(py, px);
+                        } else {
+                            DEBUGPRINT("GimpFactory::create(): out of bounds: %d, %d\n", py, px);
+                        }
                         break;
                     }
                 }
             }
         }
-
-        double progress = pixels_seen / total_pixels;
-        if (progress > prev_show_progress + 0.01) {
-            gimp_progress_update(progress);
-            prev_show_progress = progress;
-        }
     }
 
+    g_object_unref (buffer);
 
     DEBUGPRINT("GimpFactory::create(): done\n");
 

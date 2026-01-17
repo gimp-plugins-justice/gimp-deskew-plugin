@@ -263,5 +263,5 @@ static gboolean
 dialog_image_constraint_func (gint32    image_id,
                               gpointer  data)
 {
-  return (gimp_image_base_type (image_id) == GIMP_RGB);
+  return (gimp_image_get_base_type (gimp_image_get_by_id (image_id)) == GIMP_RGB);
 }

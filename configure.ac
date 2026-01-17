@@ -7,7 +7,7 @@ m4_define([plugin_name], [gimp-deskew-plugin])
 
 dnl These three define the plug-in version number
 m4_define([plugin_major_version], [1])
-m4_define([plugin_minor_version], [1])
+m4_define([plugin_minor_version], [2])
 m4_define([plugin_micro_version], [0])
 
 m4_define([plugin_version],
@@ -23,15 +23,12 @@ dnl AC_DEFINE(PLUGIN_MINOR_VERSION, plugin_minor_version, [2])
 dnl AC_DEFINE(PLUGIN_MICRO_VERSION, plugin_micro_version, [0])
 
 AC_CONFIG_SRCDIR([src/main.c])
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS(config.h)
 
-AM_INIT_AUTOMAKE(no-define)
+AM_INIT_AUTOMAKE([no-define subdir-objects foreign])
 
-AC_ISC_POSIX
 AC_PROG_CC
-AM_PROG_CC_STDC
 AC_PROG_CXX
-AC_HEADER_STDC
 
 
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
@@ -50,21 +47,21 @@ fi
 changequote([,])dnl
 
 
-GIMP_REQUIRED_VERSION=2.2.0
+GIMP_REQUIRED_VERSION=3.0.0
 
 PKG_CHECK_MODULES(GIMP,
-  gimp-2.0 >= $GIMP_REQUIRED_VERSION gimpui-2.0 >= $GIMP_REQUIRED_VERSION)
+  gimp-3.0 >= $GIMP_REQUIRED_VERSION gimpui-3.0 >= $GIMP_REQUIRED_VERSION)
 
 AC_SUBST(GIMP_CFLAGS)
 AC_SUBST(GIMP_LIBS)
 
-GIMP_LIBDIR=`$PKG_CONFIG --variable=gimplibdir gimp-2.0`
+GIMP_LIBDIR=`$PKG_CONFIG --variable=gimplibdir gimp-3.0`
 AC_SUBST(GIMP_LIBDIR)
 
 
 dnl i18n stuff
 
-GETTEXT_PACKAGE=gimp20-deskew-plugin
+GETTEXT_PACKAGE=gimp30-deskew-plugin
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
 				    [The gettext translation domain.])
@@ -86,33 +83,6 @@ AC_SUBST(LOCALEDIR)
 
 DATADIR="${datadir}/plugin_name"
 AC_SUBST(DATADIR)
-
-
-AC_MSG_CHECKING([if GTK+ is version 2.7.0 or newer])
-if $PKG_CONFIG --atleast-version=2.7.0 gtk+-2.0; then
-  have_gtk_2_7=yes
-else
-  have_gtk_2_7=no
-fi
-AC_MSG_RESULT($have_gtk_2_7)
-
-if test "x$have_gtk_2_7" != "xyes"; then
-  CPPFLAGS="$CPPFLAGS -DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED"
-fi
-
-
-AC_MSG_CHECKING([if GIMP is version 2.3.0 or newer])
-if $PKG_CONFIG --atleast-version=2.3.0 gimp-2.0; then
-  have_gimp_2_3=yes
-else
-  have_gimp_2_3=no
-fi
-AC_MSG_RESULT($have_gimp_2_3)
-
-if test "x$have_gimp_2_3" != "xyes"; then
-  CPPFLAGS="$CPPFLAGS -DGIMP_DISABLE_DEPRECATED"
-fi
-
 
 
 AC_CONFIG_FILES([

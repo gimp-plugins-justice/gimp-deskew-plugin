@@ -4,7 +4,7 @@
 
 /*  Public functions  */
 
-void   render (gint32              image_ID,
+void   render (GimpImage          *image,
 	       GimpDrawable       *drawable,
 	       PlugInVals         *vals,
 	       PlugInImageVals    *image_vals,

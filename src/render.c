@@ -35,12 +35,13 @@
 const double deskew_threshold = 0.01/57.295;
 
 void
-render (gint32              image_ID,
+render (GimpImage          *image,
 	GimpDrawable       *drawable,
 	PlugInVals         *vals,
 	PlugInImageVals    *image_vals,
 	PlugInDrawableVals *drawable_vals)
 {
+    DEBUGPRINT("render: starting\n");
     double angle = gimp_find_skew(drawable); // in radians
 
     DEBUGPRINT("deskew: angle=%.2f\n",
@@ -54,9 +55,11 @@ render (gint32              image_ID,
     gimp_context_set_interpolation (GIMP_INTERPOLATION_CUBIC);
     gimp_context_set_transform_resize (GIMP_TRANSFORM_RESIZE_ADJUST);
 
-    drawable->drawable_id =
-        gimp_item_transform_rotate(drawable->drawable_id,
-                                   angle,
-                                   TRUE, -1, -1);
+    DEBUGPRINT("render: rotating by %f radians around center\n", angle);
+    gimp_item_transform_rotate (GIMP_ITEM (drawable),
+                                angle,
+                                TRUE,
+                                gimp_drawable_get_width (drawable) / 2.0,
+                                gimp_drawable_get_height (drawable) / 2.0);
     gimp_context_pop ();
 }
