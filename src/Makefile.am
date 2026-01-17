@@ -1,8 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
-bin_PROGRAMS = deskew
-
-bindir = `pkg-config --variable=gimplibdir gimp-2.0`/plug-ins
+deskewdir = $(GIMP_LIBDIR)/plug-ins/deskew
+deskew_PROGRAMS = deskew
 
 deskew_SOURCES =                                \
 	plugin-intl.h                           \
@@ -27,9 +26,7 @@ deskew_SOURCES =                                \
 
 AM_CPPFLAGS = \
 	-DLOCALEDIR=\""$(LOCALEDIR)"\"		\
-	-DDATADIR=\""$(DATADIR)"\"
-
-INCLUDES =\
+	-DDATADIR=\""$(DATADIR)"\" \
 	-I$(top_srcdir)		\
 	@GIMP_CFLAGS@		\
 	-I$(includedir)

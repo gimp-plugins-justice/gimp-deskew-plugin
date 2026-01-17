@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gimp deskew plugin 1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-23 04:23+0300\n"
+"POT-Creation-Date: 2026-01-17 01:03-0700\n"
 "PO-Revision-Date: 2019-01-23 04:23+0300\n"
 "Last-Translator: Alberto Fanjul <albertofanjul@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 3.31.0\n"
 
-#: ../src/interface.c:109 ../src/main.c:130
+#: ../src/interface.c:109 ../src/main.c:95
 msgid "Deskew"
 msgstr "Enderezar"
 
@@ -85,10 +85,10 @@ msgstr "Capas:"
 msgid "RGB Images:"
 msgstr "Imágenes RGB:"
 
-#: ../src/main.c:125
+#: ../src/main.c:98
 msgid "Automatically straighten the rotated image"
 msgstr "Enderezar automáticamente la imagen rotada"
 
-#: ../src/main.c:126
+#: ../src/main.c:99
 msgid "This plug-in automatically straightens (deskews) rotated images"
 msgstr "Este plugin endereza automáticamente (deskews) imágenes rotadas"

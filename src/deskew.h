@@ -9,8 +9,8 @@
 // #define DEBUG 1
 
 #if DEBUG
-#include <stdio.h>
-#define DEBUGPRINT(x...) fprintf(stderr, x)
+#include <glib.h>
+#define DEBUGPRINT(x...) g_printerr(x)
 #else
 #define DEBUGPRINT(x...) ((void)0)
 #endif
